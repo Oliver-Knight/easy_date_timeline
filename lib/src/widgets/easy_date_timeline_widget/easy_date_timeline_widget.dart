@@ -152,7 +152,7 @@ class _EasyDateTimeLineState extends State<EasyDateTimeLine> {
                     EasyMonthSwitcher(
                       locale: widget.locale,
                       value: _easyMonth,
-                      onMonthChange: _onMonthChange,
+                      onMonthChange: onMonthChange,
                       style: _headerProps.monthStyle,
                     ),
                 ],
@@ -178,13 +178,13 @@ class _EasyDateTimeLineState extends State<EasyDateTimeLine> {
       child: EasyMonthDropDown(
         value: _easyMonth,
         locale: widget.locale,
-        onMonthChange: _onMonthChange,
+        onMonthChange: onMonthChange,
         style: _headerProps.monthStyle,
       ),
     );
   }
 
-  void _onMonthChange(month) {
+  void onMonthChange(month) {
     setState(() {
       _initialDay = 1;
       _easyMonth = month!;
