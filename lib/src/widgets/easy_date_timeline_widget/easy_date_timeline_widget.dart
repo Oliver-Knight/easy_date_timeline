@@ -14,6 +14,7 @@ class EasyDateTimeLine extends StatefulWidget {
     super.key,
     required this.initialDate,
     this.disabledDates,
+    this.easyMonth,
     this.headerProps = const EasyHeaderProps(),
     this.timeLineProps = const EasyTimeLineProps(),
     this.dayProps = const EasyDayProps(),
@@ -33,6 +34,9 @@ class EasyDateTimeLine extends StatefulWidget {
 
   /// The color for the active day.
   final Color? activeColor;
+
+  //!add by Thet Paing Soe
+  final EasyMonth? easyMonth;
 
   /// Contains properties for configuring the appearance and behavior of the timeline header.
   final EasyHeaderProps headerProps;
@@ -151,7 +155,7 @@ class _EasyDateTimeLineState extends State<EasyDateTimeLine> {
                   if (_showMonthPicker(pickerType: MonthPickerType.switcher))
                     EasyMonthSwitcher(
                       locale: widget.locale,
-                      value: _easyMonth,
+                      value: widget.easyMonth,//!changed by Thet Paing
                       onMonthChange: onMonthChange,
                       style: _headerProps.monthStyle,
                     ),
@@ -160,7 +164,7 @@ class _EasyDateTimeLineState extends State<EasyDateTimeLine> {
             ),
           TimeLineWidget(
             initialDate: initialDate.copyWith(
-              month: _easyMonth.vale,
+              month: widget.easyMonth?.vale ?? _easyMonth.vale, //!changed by Thet Paing
               day: _initialDay,
             ),
             inactiveDates: widget.disabledDates,
@@ -176,7 +180,7 @@ class _EasyDateTimeLineState extends State<EasyDateTimeLine> {
         ],
       ),
       child: EasyMonthDropDown(
-        value: _easyMonth,
+        value: widget.easyMonth ?? _easyMonth, //!edited by Thet Paing Soe
         locale: widget.locale,
         onMonthChange: onMonthChange,
         style: _headerProps.monthStyle,
